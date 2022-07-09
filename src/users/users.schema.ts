@@ -45,18 +45,28 @@ export class User extends Document {
   @IsNotEmpty()
   password: string;
 
-  @Prop({
-    default:
-      'https:github.com/amamov/NestJS-solid-restapi-boilerplate/raw/main/docs/images/1.jpeg',
+  @ApiProperty({
+    example: '호두',
+    description: 'preferIngredients',
   })
+  @Prop()
   @IsString()
-  imgUrl: string;
+  preferIngrdients: string[];
+
+  @ApiProperty({
+    example: '호두',
+    description: 'allgergyIngredients',
+  })
+  @Prop()
+  @IsString()
+  allergyIngrdients: string[];
 
   readonly readOnlyData: {
     id: string;
     email: string;
     name: string;
-    imgUrl: string;
+    preferIngrdients: string[];
+    allergyIngrdients: string[];
   };
 }
 
@@ -67,7 +77,8 @@ _UserSchema.virtual('readOnlyData').get(function (this: User) {
     id: this.id,
     email: this.email,
     name: this.name,
-    imgUrl: this.imgUrl,
+    preferIngredeints: this.preferIngrdients,
+    allergyIngredients: this.allergyIngrdients,
   };
 });
 

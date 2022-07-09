@@ -1,4 +1,10 @@
-import { Controller, Post, Body, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseInterceptors,
+  UseGuards,
+} from '@nestjs/common';
 import { Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UserIntercepter } from 'src/common/interceptors/user.interceptor';
@@ -6,6 +12,8 @@ import { UsersService } from './users.service';
 import { UserRequestDto } from 'src/dto/users.request.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { LoginRequestDto } from 'src/auth/dto/LoginRequestDto';
+import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
+import { CurrentUser } from 'src/decorator/CurrentUser.decorator';
 @Controller('user')
 @UseInterceptors(UserIntercepter)
 export class UsersController {
@@ -15,13 +23,10 @@ export class UsersController {
   ) {}
 
   @ApiOperation({ summary: '현재 로그인한 유저 정보 가져오기' })
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
-  getCurrentCat(/*@CurrentUser() user*/) {
-    //@Req() req: Request
-    //return '현재 로그인한 유저 정보';
-    //return userService.getCurrentCat;
-    return this.userService.getAllUser();
+  getCurrentCat(@CurrentUser() user) {
+    return user.readOnlyData;
   }
 
   @ApiResponse({
@@ -31,7 +36,6 @@ export class UsersController {
   @ApiResponse({
     status: 200,
     description: '성공!',
-    //type: ReadOnlyCatDto,
   })
   @ApiOperation({ summary: '회원가입' })
   @Post()
@@ -42,6 +46,18 @@ export class UsersController {
   @ApiOperation({ summary: '로그인' })
   @Post('login')
   async logIn(@Body() data: LoginRequestDto) {
-    return this.authService.jwtLogIn(data);
+    return await this.authService.jwtLogIn(data);
+  }
+
+  @ApiOperation({ summary: '알러기 성분 설정' })
+  @Post('allergy')
+  setAllergyIngredients(@Body() data) {
+    return `${data} is posted`;
+  }
+
+  @ApiOperation({ summary: '선호 성분 설정' })
+  @Post('ingrediets')
+  setPreferIngredients(@Body() data) {
+    return `${data} is posted`;
   }
 }
