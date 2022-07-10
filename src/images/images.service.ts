@@ -18,25 +18,4 @@ export class ImagesService {
     labels.forEach((label) => console.log(label.description));
     return await labels;
   }
-  /*
-  async quickstart() {
-    // Imports the Google Cloud client library
-    const vision = require("@google-cloud/vision");
-  
-    // Creates a client
-    const client = new vision.ImageAnnotatorClient({
-      keyFilename: "./universal-ion-348016-a59119eed5cf.json",
-    });
-  
-    // Performs label detection on the image file
-    //const [result] = await client.labelDetection("./book.jpg");
-    const [result] = await client.textDetection("./book.jpg");
-  
-    const labels = result.textAnnotations;
-    console.log("Labels:");
-    labels.forEach((label) => console.log(label.description));
-  }
-
-  quickstart();
-  */
 }
