@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "universal-ion-348016",
+  "private_key_id": "a59119eed5cf41d6804888591a231da514d3d375",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCb1M6LDKKzmKU4\np7dfnxhvA1IW1oEx2GbHaCccTrH5TQ34qj8029XW1NNi5PEG+w2q2aZN1Iv9yyVG\n49a31ic5E7TXNu3MP7uE9P3guQDm2/OM3gq5cCOaBhYZVNZxStRe++Fy+DNj/e0V\n0GNptAMRWTu++G0M2Dys6EAm3zA1cD808tSqG8nNTGj17VV1CkH2x5E2sxie8iWc\neJ72xIzzjF4j/DPIToNGi6NC0O2PlROr4qXkHEGqJgtrKxls2C7FvW0Ey0Q9vHfP\nvAm5PnsycNDi7mIUSbwDWGegFWWajQXrSSKHBh5BKqeoiIYulrEUwRyTxzbz5JFH\nyvBVlkXXAgMBAAECggEAD2blsTWjAShFsEdXZwKVCifkXbB+3XvbkLr5HqGikpbs\nmhbNn35Y8N5hNEWXkw6OR8QyXT/0RDXnbc3II6xtfQU3GwxpTYZBFP+X9jWi4q57\nsIEjwzdTtX4DgiZx+YmhWu//VPs2LRxkagMKSGDL6tOMhbANKzdWK+raqFzn6WgS\nojobyAJHEv8wMs2E51GiDUvnfrTibx88utmAeep/1+wYd8WkTMpsxiMgmhxkPsVA\nNuSW0qkM+C7IiBmXp1oFe5l7cK5C8nyhq85F13Jm/Lnve6ZIdGaxcykZFORq3QpS\n+36EHjqe1ifS8Fu/qFZbrxZFxeupGWsQ/UjU8GDZyQKBgQDYqg5Cp00/in/op+y+\nLsggiNMTluG/9X+fKXeheqkdpF+K22uPsTL2kSqDGrzuG+vB6lBg7+/KNXcnLvSH\nC3qrFk9C86TZtO1Thtz5mKp6FoLt5XKCiQmNGLzF6+l1pkjW751UNiEnu2g0X9+F\nptC/gVf8zpsDcqej7Awb/ScaKQKBgQC4H2efgL1OMoFxOkXD11wZ7FilcA+WRonK\nFjLLRqzX9xCDN+H0FZPAYVxalF33xzrHTpJhH2pF4v9KFiYuHeAjpLiuLj/nBF6o\nVATCt0OAdjgPY53RaGMRGnJcmdmz8Ut5bcoOHReWWyEewpOKk0X48uBYkxoFQvw2\n6eQrGz5f/wKBgCnz88LwRkLxfIb+TRceU94I4GZApwHWdZnKG8IG0ExPEbj/d7ph\nI28e+M5eFQs+GM55oorCqvnKlIHf07V6gYwzS7G5H8iQAgxUZuFlsEznov6RmTSx\neEn76kGgxpnjUuNbjmlJ+e2JmknZ7pwgivcqAnGPR/DI+LEC+e1JfZLRAoGBALeB\nLUCuCX43HgVgY4nFSRjZEpyH7DEEym1r5GHuZXO03HM7Leqb2q8hGe948ZJysOVV\nLNS5f6x5iaAoJRNPWUWM9Tc8BxpSo5i2bCw4hIEy0bqcuPytQhcYuaQK/gu2UFeM\nkZWxbwG+f2rt2CiDkXiFcA03Rva5hS+hunMv6uG3AoGBAKDmwRW9sdpQCCxgb7Sv\nti/ydSOfI6fNErA5YGPq8aKfUITkXeUhcvl2Z+kTF6ztdlC0zZY2kvgOA63enI1e\niOeiLl/mc5m9uqrqpwLY8XmzSTggVtjYThOaPvEkA6lU0faKBS9yzI5gKU+mRCfO\nBqw7sFj9VAn6Jz32xFEMKlf2\n-----END PRIVATE KEY-----\n",
+  "client_email": "healthyfood@universal-ion-348016.iam.gserviceaccount.com",
+  "client_id": "108903673397664902301",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/healthyfood%40universal-ion-348016.iam.gserviceaccount.com"
+}
