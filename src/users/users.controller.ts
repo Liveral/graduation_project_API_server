@@ -4,6 +4,7 @@ import {
   Body,
   UseInterceptors,
   UseGuards,
+  UploadedFiles,
 } from '@nestjs/common';
 import { Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -14,6 +15,9 @@ import { AuthService } from 'src/auth/auth.service';
 import { LoginRequestDto } from 'src/auth/dto/LoginRequestDto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { CurrentUser } from 'src/decorator/CurrentUser.decorator';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { multerOptions } from 'src/common/utils/multer.options';
+import { User } from './users.schema';
 @Controller('user')
 @UseInterceptors(UserIntercepter)
 export class UsersController {
@@ -25,7 +29,7 @@ export class UsersController {
   @ApiOperation({ summary: '현재 로그인한 유저 정보 가져오기' })
   @UseGuards(JwtAuthGuard)
   @Get()
-  getCurrentCat(@CurrentUser() user) {
+  getCurrentCat(@CurrentUser() user: User) {
     return user.readOnlyData;
   }
 
@@ -44,9 +48,22 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: '로그인' })
-  @Post('login')
+  @Get('login')
   async logIn(@Body() data: LoginRequestDto) {
     return await this.authService.jwtLogIn(data);
+  }
+
+  @ApiOperation({ summary: '파일업로드' })
+  @Post('upload')
+  @UseGuards(JwtAuthGuard)
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
+  uploadImg(
+    @UploadedFiles() files: Array<Express.Multer.File>,
+    @CurrentUser() user,
+  ) {
+    this.userService.getTextFromImage(user, files);
+    //console.log(files[0]);
+    //return `${files[0]} is posted`;
   }
 
   @ApiOperation({ summary: '알러기 성분 설정' })

@@ -1,6 +1,7 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { UserRepository } from './users.repository';
 import { UserRequestDto } from 'src/dto/users.request.dto';
+import { User } from './users.schema';
 import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
@@ -26,5 +27,13 @@ export class UsersService {
       password: hashedPassword,
     });
     return user.readOnlyData;
+  }
+
+  async getTextFromImage(user: User, file: Array<Express.Multer.File>) {
+    //console.log(file[0].filename);
+    const path = `../commont/uploads/Image/${file[0].filename}`;
+    console.log(path);
+    //console.log(file[0].fieldname);
+    //console.log(user.readOnlyData);
   }
 }
