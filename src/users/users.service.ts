@@ -29,11 +29,5 @@ export class UsersService {
     return user.readOnlyData;
   }
 
-  async getTextFromImage(user: User, file: Array<Express.Multer.File>) {
-    //console.log(file[0].filename);
-    const path = `../commont/uploads/Image/${file[0].filename}`;
-    console.log(path);
-    //console.log(file[0].fieldname);
-    //console.log(user.readOnlyData);
-  }
+  async setAllergy(body) {}
 }

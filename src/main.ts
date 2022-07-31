@@ -4,12 +4,16 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as expressBasicAuth from 'express-basic-auth';
 import { HttpExceptionFilter } from './http-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe());
   /*
   app.use(
-    '/docs',
+    ['/docs'],
     expressBasicAuth({
       challenge: true,
       users: {
@@ -18,7 +22,6 @@ async function bootstrap() {
     }),
   );
   */
-  app.useGlobalFilters(new HttpExceptionFilter());
   const config = new DocumentBuilder()
     .setTitle('API docs')
     .setDescription('API doscription')
