@@ -25,14 +25,15 @@ export class ImagesController {
 
   @ApiOperation({ summary: '파일업로드' })
   @Post('upload')
-  @UseInterceptors(FileInterceptor('image'))
-  async uploadImg(@UploadedFile() file: Express.Multer.File) {
-    //return await this.imagesService.getTextFromImage(files);
-    //console.log(file);
-    //return await this.awsService.uploadFileToS3('image', file);
-    const keys = await this.awsService.uploadFileToS3('image', file);
-    const path = this.awsService.getAwsS3FileUrl(keys.key);
-    console.log(path);
-    return await this.imagesService.getTextFromAws(path);
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
+  async uploadImg(@UploadedFiles() files: Array<Express.Multer.File>) {
+    return await this.imagesService.getTextFromImage(files);
+  }
+
+  @ApiOperation({ summary: '파일업로드' })
+  @Post('upload/aws')
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
+  async uploadToS3(@UploadedFiles() files: Array<Express.Multer.File>) {
+    return await this.awsService.uploadFileToS3('image', files[0]);
   }
 }

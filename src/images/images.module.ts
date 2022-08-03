@@ -7,12 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    //ConfigModule.forRoot({isGlobal: true,})
-    /*
     MulterModule.register({
       dest: './upload',
     }),
-    */
   ],
   providers: [ImagesService, AwsService],
   controllers: [ImagesController],
