@@ -15,10 +15,11 @@ import { MulterModule } from '@nestjs/platform-express';
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     forwardRef(() => AuthModule),
-
+    /*
     MulterModule.register({
       dest: './upload',
     }),
+    */
     // AuthModule,
   ],
   controllers: [UsersController],

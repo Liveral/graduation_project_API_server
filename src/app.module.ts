@@ -9,13 +9,12 @@ import { AuthModule } from './auth/auth.module';
 import { ImagesModule } from './images/images.module';
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
-
     MongooseModule.forRoot(process.env.MONGGODB_URI),
-
     AuthModule,
-
     ImagesModule,
   ],
   controllers: [AppController],

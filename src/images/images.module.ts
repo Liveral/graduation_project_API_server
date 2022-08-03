@@ -1,9 +1,20 @@
 import { Module } from '@nestjs/common';
 import { ImagesService } from './images.service';
 import { ImagesController } from './images.controller';
+import { MulterModule } from '@nestjs/platform-express';
+import { AwsService } from './aws.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  providers: [ImagesService],
-  controllers: [ImagesController]
+  imports: [
+    //ConfigModule.forRoot({isGlobal: true,})
+    /*
+    MulterModule.register({
+      dest: './upload',
+    }),
+    */
+  ],
+  providers: [ImagesService, AwsService],
+  controllers: [ImagesController],
 })
 export class ImagesModule {}
