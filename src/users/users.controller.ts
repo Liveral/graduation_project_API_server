@@ -18,6 +18,7 @@ import { CurrentUser } from 'src/decorator/CurrentUser.decorator';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/utils/multer.options';
 import { User } from './users.schema';
+import { AdditiveModifyDto } from 'src/dto/additive.modify.dto';
 @Controller('user')
 @UseInterceptors(UserIntercepter)
 export class UsersController {
@@ -48,20 +49,31 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: '로그인' })
-  @Get('login')
+  @Post('login')
   async logIn(@Body() data: LoginRequestDto) {
     return await this.authService.jwtLogIn(data);
   }
 
   @ApiOperation({ summary: '알러기 성분 설정' })
+  @UseGuards(JwtAuthGuard)
   @Post('allergy')
-  setAllergyIngredients(@Body() data) {
-    return `${data} is posted`;
+  setAllergyAdditive(
+    @CurrentUser() user: User,
+    @Body() data: AdditiveModifyDto,
+  ) {
+    //return `${data} is posted`;
+    console.log(data);
+    return this.userService.setAllergy(data);
   }
 
   @ApiOperation({ summary: '선호 성분 설정' })
-  @Post('ingrediets')
-  setPreferIngredients(@Body() data) {
-    return `${data} is posted`;
+  @UseGuards(JwtAuthGuard)
+  @Post('prefer')
+  setPreferAdditive(
+    @CurrentUser() user: User,
+    @Body() data: AdditiveModifyDto,
+  ) {
+    console.log(data);
+    return this.userService.setPrefer(data);
   }
 }

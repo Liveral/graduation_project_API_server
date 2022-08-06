@@ -23,10 +23,13 @@ export class ImagesController {
     private readonly awsService: AwsService,
   ) {}
 
+  //https://www.fun25.co.kr/blog/flutter-http-post-example/?category=003
+  //https://archijude.tistory.com/358
   @ApiOperation({ summary: '파일업로드' })
   @Post('upload')
   @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
   async uploadImg(@UploadedFiles() files: Array<Express.Multer.File>) {
+    console.log(files);
     return await this.imagesService.getTextFromImage(files);
   }
 

@@ -3,6 +3,7 @@ import { UserRepository } from './users.repository';
 import { UserRequestDto } from 'src/dto/users.request.dto';
 import { User } from './users.schema';
 import * as bcrypt from 'bcrypt';
+import { AdditiveModifyDto } from 'src/dto/additive.modify.dto';
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -29,5 +30,18 @@ export class UsersService {
     return user.readOnlyData;
   }
 
-  async setAllergy(body) {}
+  // repository와 연결
+  async setAllergy(body: AdditiveModifyDto) {
+    const email = body.email;
+    const AdditiveArr = body.allergyAdditive;
+    console.log(AdditiveArr);
+    return await this.userRepository.updateAllergyAdditive(email, AdditiveArr);
+    //return await this.userRepository.updateAllergyAdditive(email, body);
+  }
+
+  async setPrefer(body: AdditiveModifyDto) {
+    const email = body.email;
+    const AdditiveArr = body.allergyAdditive;
+    return await this.userRepository.updatePreferAdditive(email, AdditiveArr);
+  }
 }

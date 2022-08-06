@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory, SchemaOptions } from '@nestjs/mongoose';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsArray } from 'class-validator';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 const options: SchemaOptions = {
@@ -46,27 +46,27 @@ export class User extends Document {
   password: string;
 
   @ApiProperty({
-    example: '호두',
-    description: 'preferIngredients',
+    example: '[호두, 땅콩, 구연산]',
+    description: 'prefer Food Additive',
   })
   @Prop()
-  @IsString()
-  preferIngrdients: string[];
+  @IsArray()
+  preferAdditive: string[];
 
   @ApiProperty({
-    example: '호두',
-    description: 'allgergyIngredients',
+    example: '[호두, 땅콩, 구연산]',
+    description: 'allgergy Food Additive',
   })
   @Prop()
-  @IsString()
-  allergyIngrdients: string[];
+  @IsArray()
+  allergyAdditive: string[];
 
   readonly readOnlyData: {
     id: string;
     email: string;
     name: string;
-    preferIngrdients: string[];
-    allergyIngrdients: string[];
+    preferAdditive: string[];
+    allergyAdditive: string[];
   };
 }
 
@@ -77,8 +77,8 @@ _UserSchema.virtual('readOnlyData').get(function (this: User) {
     id: this.id,
     email: this.email,
     name: this.name,
-    preferIngredeints: this.preferIngrdients,
-    allergyIngredients: this.allergyIngrdients,
+    preferAdditive: this.preferAdditive,
+    allergyAdditive: this.allergyAdditive,
   };
 });
 

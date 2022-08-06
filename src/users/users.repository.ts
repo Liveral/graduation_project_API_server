@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './users.schema';
 import { UserRequestDto } from 'src/dto/users.request.dto';
 import { Model, Types } from 'mongoose';
+import { userInfo } from 'os';
 @Injectable()
 export class UserRepository {
   constructor(
@@ -36,6 +37,38 @@ export class UserRepository {
 
   async findUserByEmail(email: string): Promise<User | null> {
     const user = await this.userModel.findOne({ email });
+    return user;
+  }
+
+  async updateAllergyAdditive(
+    email: string,
+    contents: string[],
+  ): Promise<User | null> {
+    await this.userModel.updateOne(
+      {
+        email: email,
+      },
+      {
+        allergyAdditive: contents,
+      },
+    );
+    const user = this.userModel.findOne({ email });
+    return user;
+  }
+
+  async updatePreferAdditive(
+    email: string,
+    contents: string[],
+  ): Promise<User | null> {
+    await this.userModel.updateOne(
+      {
+        email: email,
+      },
+      {
+        preferAdditive: contents,
+      },
+    );
+    const user = this.userModel.findOne({ email });
     return user;
   }
 }
