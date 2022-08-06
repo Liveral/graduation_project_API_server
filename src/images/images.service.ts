@@ -12,8 +12,12 @@ export class ImagesService {
     const [result] = await client.textDetection(`${path}`);
 
     const labels = result.textAnnotations;
+    //console.log(labels);
     //console.log('Labels:');
-    labels.forEach((label) => console.log(label.description));
+    var data: string;
+    // labels.forEach((label) => console.log(label.description));
+    labels.forEach((label) => (data += label.description));
+    console.log(data);
     return await labels;
   }
 
