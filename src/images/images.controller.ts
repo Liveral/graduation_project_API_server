@@ -29,11 +29,11 @@ export class ImagesController {
   @Post('upload')
   @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
   async uploadImg(@UploadedFiles() files: Array<Express.Multer.File>) {
-    console.log(files);
+    //console.log(files);
     return await this.imagesService.getTextFromImage(files);
   }
 
-  @ApiOperation({ summary: '파일업로드' })
+  @ApiOperation({ summary: 'aws S3 파일업로드' })
   @Post('upload/aws')
   @UseInterceptors(FilesInterceptor('image', 10, multerOptions('Image')))
   async uploadToS3(@UploadedFiles() files: Array<Express.Multer.File>) {

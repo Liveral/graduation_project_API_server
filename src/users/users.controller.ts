@@ -59,11 +59,17 @@ export class UsersController {
   @Post('allergy')
   setAllergyAdditive(
     @CurrentUser() user: User,
-    @Body() data: AdditiveModifyDto,
+    //@Body() data: AdditiveModifyDto,
+    @Body() data: any,
   ) {
     //return `${data} is posted`;
     console.log(data);
-    return this.userService.setAllergy(data);
+    const newData = {
+      email: user.email,
+      allergyAdditive: data.allergyAdditive,
+    };
+    console.log(newData);
+    return this.userService.setAllergy(newData);
   }
 
   @ApiOperation({ summary: '선호 성분 설정' })
