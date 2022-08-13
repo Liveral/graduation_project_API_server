@@ -24,7 +24,7 @@ export class ImagesService {
     data = data.replace(/\n|\s|[0-9]|g|mg/g, '');
     var dataArr: string[];
     dataArr = data.split(/[",", ".","(",")", ":",";", "%", " "]/);
-    //console.log(dataArr);
+    console.log(dataArr);
     return await dataArr;
   }
 
