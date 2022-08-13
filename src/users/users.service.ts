@@ -4,6 +4,7 @@ import { UserRequestDto } from 'src/dto/users.request.dto';
 import { User } from './users.schema';
 import * as bcrypt from 'bcrypt';
 import { AdditiveModifyDto } from 'src/dto/additive.modify.dto';
+import { PreferAdditiveDto } from 'src/dto/prefer.additive.modify.dto';
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UserRepository) {}
@@ -39,9 +40,9 @@ export class UsersService {
     //return await this.userRepository.updateAllergyAdditive(email, body);
   }
 
-  async setPrefer(body: AdditiveModifyDto) {
+  async setPrefer(body: PreferAdditiveDto) {
     const email = body.email;
-    const AdditiveArr = body.allergyAdditive;
+    const AdditiveArr = body.preferAdditive;
     return await this.userRepository.updatePreferAdditive(email, AdditiveArr);
   }
 }

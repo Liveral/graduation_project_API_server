@@ -19,6 +19,7 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/utils/multer.options';
 import { User } from './users.schema';
 import { AdditiveModifyDto } from 'src/dto/additive.modify.dto';
+import { PreferAdditiveDto } from 'src/dto/prefer.additive.modify.dto';
 @Controller('user')
 @UseInterceptors(UserIntercepter)
 export class UsersController {
@@ -62,7 +63,6 @@ export class UsersController {
     //@Body() data: AdditiveModifyDto,
     @Body() data: any,
   ) {
-    //return `${data} is posted`;
     console.log(data);
     const newData = {
       email: user.email,
@@ -77,7 +77,7 @@ export class UsersController {
   @Post('prefer')
   setPreferAdditive(
     @CurrentUser() user: User,
-    @Body() data: AdditiveModifyDto,
+    @Body() data: PreferAdditiveDto,
   ) {
     console.log(data);
     return this.userService.setPrefer(data);
