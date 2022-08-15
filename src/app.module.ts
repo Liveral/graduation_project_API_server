@@ -7,9 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ImagesModule } from './images/images.module';
-import { LogsController } from './logs/logs.controller';
-import { LogsService } from './logs/logs.service';
-import { LogsModule } from './logs/logs.module';
+import { LogsController } from './Datelogs/date.logs.controller';
+import { LogsService } from './Datelogs/date.logs.service';
+import { LogsModule } from './Datelogs/date.logs.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
