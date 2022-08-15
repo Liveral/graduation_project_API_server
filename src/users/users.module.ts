@@ -11,6 +11,7 @@ import { UserSchema, User } from './users.schema';
 import { UserRepository } from './users.repository';
 import { AuthModule } from 'src/auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { LogsModule } from 'src/logs/logs.module';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
@@ -21,6 +22,7 @@ import { MulterModule } from '@nestjs/platform-express';
     }),
     */
     // AuthModule,
+    forwardRef(() => LogsModule),
   ],
   controllers: [UsersController],
   providers: [UsersService, UserRepository],

@@ -7,6 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ImagesModule } from './images/images.module';
+import { LogsController } from './logs/logs.controller';
+import { LogsService } from './logs/logs.service';
+import { LogsModule } from './logs/logs.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +19,7 @@ import { ImagesModule } from './images/images.module';
     MongooseModule.forRoot(process.env.MONGGODB_URI),
     AuthModule,
     ImagesModule,
+    LogsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

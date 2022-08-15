@@ -16,7 +16,7 @@ import { ImagesService } from './images.service';
 import { UserIntercepter } from 'src/common/interceptors/user.interceptor';
 import { AwsService } from './aws.service';
 @Controller('images')
-@UseInterceptors(UserIntercepter)
+//@UseInterceptors(UserIntercepter)
 export class ImagesController {
   constructor(
     private readonly imagesService: ImagesService,
