@@ -12,6 +12,7 @@ export class LogsService {
   constructor(private readonly logsRepository: LogsRepository) {}
 
   async createLogs(id: string, createLogDto: LogsRequestDto) {
+    /*
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth();
@@ -30,7 +31,8 @@ export class LogsService {
       seconds,
       milliseconds,
     ];
-    return await this.logsRepository.create(DateArr, createLogDto, id);
+    */
+    return await this.logsRepository.create(createLogDto, id);
   }
 
   async getLogs(id: string | Types.ObjectId) {

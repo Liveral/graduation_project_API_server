@@ -4,4 +4,6 @@ import { Logs } from '../date.logs.schema';
 export class LogsRequestDto extends PickType(Logs, [
   //'Date',
   'AdditiveLogs',
+  'Comment',
+  'Rating',
 ] as const) {}

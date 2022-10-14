@@ -29,6 +29,8 @@ export class LogsController {
     @Body() createLogDto: LogsRequestDto,
   ) {
     return this.logsService.createLogs(user.id, createLogDto);
+    //console.log(createLogDto);
+    //return 'success';
   }
 
   @ApiOperation({

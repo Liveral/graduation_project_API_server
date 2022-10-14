@@ -26,91 +26,6 @@ export class Logs extends Document {
   })
   @IsNotEmpty()
   User_id: Types.ObjectId;
-  /*
-  @ApiProperty({
-    description: 'year',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  year: number;
-
-  @ApiProperty({
-    description: 'month',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  month: number;
-
-  @ApiProperty({
-    description: 'day',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  day: number;
-
-  @ApiProperty({
-    description: 'hour',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  hours: Number;
-
-  @ApiProperty({
-    description: 'minute',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  minutes: number;
-
-  @ApiProperty({
-    description: 'second',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsString()
-  seconds: string;
-
-  @ApiProperty({
-    description: 'second',
-    required: true,
-  })
-  @Prop({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsString()
-  milliseconds: string;
-  */
-  @ApiProperty({
-    example: '[년, 월, 일, 시, 분, 초, 밀리세컨드]',
-    description: '로그 시간',
-  })
-  @Prop()
-  @IsArray()
-  Date: number[];
 
   @ApiProperty({
     example: '[호두, 땅콩, 구연산]',
@@ -119,6 +34,22 @@ export class Logs extends Document {
   @Prop()
   @IsArray()
   AdditiveLogs: string[];
+
+  @ApiProperty({
+    example: '[comments]',
+    description: 'Food Additive comment',
+  })
+  @Prop()
+  @IsString()
+  Comment: string;
+
+  @ApiProperty({
+    example: 'rating',
+    description: 'Food Additive rating',
+  })
+  @Prop()
+  @IsNumber()
+  Rating: Number;
 }
 
 export const LogsSchema = SchemaFactory.createForClass(Logs);
