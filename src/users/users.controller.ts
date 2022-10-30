@@ -5,6 +5,9 @@ import {
   UseInterceptors,
   UseGuards,
   UploadedFiles,
+  Req,
+  Param,
+  Query,
 } from '@nestjs/common';
 import { Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -20,6 +23,7 @@ import { multerOptions } from 'src/common/utils/multer.options';
 import { User } from './users.schema';
 import { AdditiveModifyDto } from 'src/dto/additive.modify.dto';
 import { PreferAdditiveDto } from 'src/dto/prefer.additive.modify.dto';
+
 @Controller('user')
 @UseInterceptors(UserIntercepter)
 export class UsersController {
@@ -55,10 +59,23 @@ export class UsersController {
     return await this.authService.jwtLogIn(data);
   }
 
-  @ApiOperation({ summary: '알러기 성분 설정' })
+  @Post('socialLogIn/kakao')
+  async socialLogInKakao(@Body() data: UserRequestDto) {
+    await this.userService.kakaoSignUp(data);
+    return await this.authService.socialLogIn(data);
+  }
+
+  @Get('kakao/callback')
+  async kakaoCallback(@Req() request) {
+    const code = request.query.code;
+    console.log('kakao redirect query code = ' + code);
+    const user = await this.userService.kakaoLogIn(code);
+    return await this.authService.socialLogIn(user);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Post('allergy')
-  setAllergyAdditive(
+  async setAllergyAdditive(
     @CurrentUser() user: User,
     //@Body() data: AdditiveModifyDto,
     @Body() data: any,
@@ -75,7 +92,7 @@ export class UsersController {
   @ApiOperation({ summary: '선호 성분 설정' })
   @UseGuards(JwtAuthGuard)
   @Post('prefer')
-  setPreferAdditive(
+  async setPreferAdditive(
     @CurrentUser() user: User,
     @Body() data: PreferAdditiveDto,
   ) {

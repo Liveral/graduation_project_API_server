@@ -12,6 +12,16 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  async socialLogIn(data: LoginRequestDto) {
+    const { email } = data;
+    const user = await this.userRepository.findUserByEmail(email);
+
+    const payload = { email: email, sub: user.id };
+    return {
+      token: this.jwtService.sign(payload),
+    };
+  }
+
   async jwtLogIn(data: LoginRequestDto) {
     const { email, password } = data;
     const user = await this.userRepository.findUserByEmail(email);

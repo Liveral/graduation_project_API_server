@@ -10,6 +10,7 @@ import { ImagesModule } from './images/images.module';
 import { LogsController } from './Datelogs/date.logs.controller';
 import { LogsService } from './Datelogs/date.logs.service';
 import { LogsModule } from './Datelogs/date.logs.module';
+//import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -20,6 +21,7 @@ import { LogsModule } from './Datelogs/date.logs.module';
     AuthModule,
     ImagesModule,
     LogsModule,
+    //HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],

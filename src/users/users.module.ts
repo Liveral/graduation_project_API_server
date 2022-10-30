@@ -12,17 +12,13 @@ import { UserRepository } from './users.repository';
 import { AuthModule } from 'src/auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { LogsModule } from 'src/Datelogs/date.logs.module';
+//import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     forwardRef(() => AuthModule),
-    /*
-    MulterModule.register({
-      dest: './upload',
-    }),
-    */
-    // AuthModule,
     forwardRef(() => LogsModule),
+    //HttpModule,
   ],
   controllers: [UsersController],
   providers: [UsersService, UserRepository],
